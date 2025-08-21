@@ -3,3 +3,5 @@ gunicorn
 sentence-transformers
 torch
 numpy
+scipy
+transformers
