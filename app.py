@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from chatbot_logic import get_bot_response
+import os  # add this for environment variables
 
 app = Flask(__name__)
 
@@ -14,4 +15,6 @@ def get_response():
     return jsonify({"response": bot_response})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # Use Render's assigned port, default to 5000 locally
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=False)  # debug=False for production
