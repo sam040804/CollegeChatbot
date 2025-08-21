@@ -1,0 +1,104 @@
+/* Body with soft blue gradient */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #67a6dd, #9fc5ef);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Chat container (rectangle shape) */
+.chat-container {
+    width: 450px;          /* wider */
+    height: 600px;         /* taller rectangle */
+    background: #ffffff;   /* solid white chat box */
+    border-radius: 20px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.2); /* soft shadow */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Chat box */
+.chat-box {
+    padding: 20px;
+    flex: 1;                  /* take remaining height */
+    overflow-y: auto;
+    background: #e8f0fe;      /* light blue chat area */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Chat bubbles */
+.user-msg, .bot-msg {
+    padding: 10px 15px;
+    border-radius: 12px;
+    max-width: 75%;
+    position: relative;       /* for timestamp */
+    display: inline-block;
+    word-wrap: break-word;    /* wrap long text */
+}
+
+/* User messages */
+.user-msg {
+    background: #004aad;
+    color: #fff;
+    align-self: flex-end;
+}
+
+/* Bot messages */
+.bot-msg {
+    background: #d1e7ff;
+    color: #000;
+    align-self: flex-start;
+}
+
+/* Timestamp bottom-right */
+.user-msg .msg-time, .bot-msg .msg-time {
+    font-size: 9px;
+    color: #555;
+    position: absolute;
+    bottom: 2px;
+    right: 5px;
+}
+
+/* Chat input area */
+.chat-input { 
+    display: flex; 
+    border-top: 1px solid #ccc; 
+    padding: 10px;
+    background: #f4f6f8;
+}
+
+/* Input field (rectangle style) */
+.chat-input input { 
+    flex: 1; 
+    padding: 14px 16px;     /* taller rectangle input */
+    border: none; 
+    outline: none; 
+    font-size: 15px; 
+    border-radius: 10px;    /* rounded rectangle */
+    height: 50px;           /* taller input box */
+}
+
+/* Send button (matches input height) */
+.chat-input button { 
+    padding: 14px 22px;     /* match input height */
+    background: #004aad; 
+    color: #fff; 
+    border: none; 
+    cursor: pointer; 
+    font-size: 15px; 
+    margin-left: 10px;      /* space between input and button */
+    border-radius: 10px;
+    height: 50px;           /* same height as input */
+    transition: background 0.3s ease;
+}
+
+/* Hover effect on send button */
+.chat-input button:hover { 
+    background: #00337a; 
+}

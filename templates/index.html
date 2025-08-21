@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>College Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box"></div>
+
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type your message..." onkeydown="if(event.key==='Enter'){sendMessage()}">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const chatBox = document.getElementById("chat-box");
+
+        function addMessage(content, sender) {
+            const time = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            const messageDiv = document.createElement("div");
+            messageDiv.className = sender + "-msg";
+            messageDiv.innerHTML = `<span class="msg-text">${content}</span><span class="msg-time">${time}</span>`;
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function sendMessage() {
+            const input = document.getElementById("user-input");
+            const userMessage = input.value.trim();
+            if (!userMessage) return;
+            addMessage("🗨️ " + userMessage, "user");
+            input.value = "";
+
+            const typingDiv = document.createElement("div");
+            typingDiv.className = "bot-msg typing-msg";
+            typingDiv.innerHTML = "🤖 <span class='typing-dots'>...</span>";
+            chatBox.appendChild(typingDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            fetch("/get_response", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({message: userMessage})
+            })
+            .then(response => response.json())
+            .then(data => {
+                typingDiv.remove();
+                addMessage("🤖 " + data.response, "bot");
+            });
+        }
+
+        // Welcome message
+        window.onload = function() {
+            addMessage("🤖 Hello! I am your College Enquiry Chatbot. Ask about courses, admissions, placements, hostel and more!", "bot");
+        }
+    </script>
+</body>
+</html>
