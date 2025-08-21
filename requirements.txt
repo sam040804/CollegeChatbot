@@ -5,3 +5,5 @@ torch
 numpy
 scipy
 transformers
+requests
+python-dotenv
