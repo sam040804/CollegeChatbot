@@ -91,21 +91,9 @@ git commit -m "Ready for deployment"
 git push origin main
 ```
 
-2. Go to [Render.com](https://render.com/) → **New Web Service** → Connect GitHub → Select `CollegeChatbot`.
 
-3. Configure the service:
 
-   * **Environment:** Python 3
-   * **Build Command:** `pip install -r requirements.txt`
-   * **Start Command:** `python app.py` *(or `gunicorn app:app` for production)*
 
-4. Click **Create Web Service** → Wait for deployment to complete (\~2–5 minutes).
-
-5. Once live, your app will have a URL, e.g.:
-
-```
-https://collegechatbot.onrender.com
-```
 
 ---
 
